@@ -42,14 +42,19 @@
     }
     .portfolio-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      justify-items: center;
     }
     .portfolio-grid img {
-      width: 100%;
+      max-width: 100%;
       height: auto;
       border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .portfolio-grid img:hover {
+      transform: scale(1.05);
     }
     .contact a {
       display: inline-block;
@@ -83,17 +88,17 @@
       <p>Меня зовут Александра, я создаю визуальные миры: от книжных иллюстраций до игровых интерфейсов и фонов для анимации. Работаю в разных стилях, подстраиваясь под задачу проекта. Люблю работать с историями и смыслами.</p>
     </section>
 
+     
     <section>
       <h2>Портфолио</h2>
       <div class="portfolio-grid">
-        <!-- Добавим изображения позже -->
         <img src="1.png" alt="Нежность" />
         <img src="5.png" alt="Улица" />
         <img src="6.png" alt="Петушок" />
       </div>
     </section>
 
-    <section class="contact">
+        <section class="contact">
       <h2>Контакты</h2>
       <p>Напишите мне:</p>
       <p>
