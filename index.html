@@ -71,32 +71,17 @@
       background: #000;
       color: white;
       padding: 40px 20px;
-      text-align: left;
+      text-align: center;
     }
 
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      gap: 20px;
-      padding-left: 0;
-      flex-wrap: wrap;
-    }
-
-    .signature {
-      height: 40px;
-      width: auto;
-      max-width: 150px;
-      object-fit: contain;
-      opacity: 0.95;
-      margin-top: 10px;
-      margin-left: -20px;
-    }
-
-    .title-block h1,
-    .title-block p {
+    header h1 {
       margin: 0;
-      text-align: left;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
     }
 
     main {
@@ -178,6 +163,30 @@
       background: #ddd;
       font-size: 0.9rem;
     }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      gap: 20px;
+      padding-left: 20px; /* отступ для текста */
+    }
+
+    .signature {
+      height: 40px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+      opacity: 0.95;
+      margin-top: 10px;
+      margin-left: -40px; /* сдвигаем подпись левее */
+    }
+
+    .title-block h1,
+    .title-block p {
+      margin: 0;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -208,6 +217,7 @@
 
       <p>За время работы я реализовала разнообразные проекты — от иллюстраций и стикеров до фонов для анимационных роликов и мультипликации, а также дизайна для рекламы, что позволило накопить ценный опыт и профессиональные навыки.</p>
 
+      
       <h3>Навыки</h3>
       <ul class="checklist">
         <li>Работа в Krita на планшете</li>
@@ -217,8 +227,9 @@
         <li>Внимание к деталям и насмотренность</li>
         <li>Способность работать с монотонными задачами</li>
       </ul>
-
+      
       <p>Для меня важно не просто создавать красивые изображения, а рассказывать истории через визуал и передавать настроение, которое будет работать на ваш проект. Буду рада воплотить ваши идеи в уникальные и выразительные иллюстрации.</p>
+
     </section>
 
     <section id="portfolio">
