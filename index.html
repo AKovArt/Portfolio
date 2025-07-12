@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
-      /* Градиент от нежного лавандового к молочному */
       background: linear-gradient(180deg, #e6e0f0 0%, #f9f7f4 100%);
       position: relative;
       min-height: 100vh;
@@ -16,20 +15,18 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
-    /* Полупрозрачный узор поверх градиента */
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('pattern.png'); /* ← укажи имя своего файла */
+      background-image: url('pattern.png');
       background-repeat: repeat;
-      background-size: 300px; /* или тот размер, который ты использовала */
-      opacity: 0.06; /* настрой по вкусу */
+      background-size: 300px;
+      opacity: 0.06;
       pointer-events: none;
       z-index: -1;
     }
 
-    /* Стили для верхнего меню */
     .top-menu {
       position: sticky;
       top: 0;
@@ -49,7 +46,7 @@
     }
 
     .top-menu ul li a {
-      color: white;
+      color: #000;
       text-decoration: none;
       font-weight: 600;
       font-size: 1.1rem;
@@ -58,28 +55,46 @@
 
     .top-menu ul li a:hover,
     .top-menu ul li a:focus {
-      color: #c9b998; /* приятный акцентный цвет */
+      color: #c9b998;
       outline: none;
     }
 
-    /* Плавный скролл для всей страницы */
     html {
       scroll-behavior: smooth;
     }
 
     header {
+      position: relative; /* чтобы подпись позиционировалась внутри */
       background: #000;
       color: white;
       padding: 40px 20px;
       text-align: center;
+      min-height: 80px; /* чтобы было место для подписи */
     }
 
-    header h1 {
+    .signature {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 40px;
+      width: auto;
+      max-width: 150px;
+      object-fit: contain;
+      opacity: 0.95;
+    }
+
+    .title-block {
+      max-width: 800px;
+      margin: 0 auto; /* центрируем блок */
+    }
+
+    .title-block h1 {
       margin: 0;
       font-size: 2.5rem;
     }
 
-    header p {
+    .title-block p {
       margin-top: 10px;
       font-size: 1.2rem;
     }
@@ -100,7 +115,6 @@
       padding-bottom: 5px;
     }
 
-    /* Стили для списка с зелеными галочками */
     ul.checklist {
       list-style: none;
       padding-left: 0;
@@ -163,30 +177,6 @@
       background: #ddd;
       font-size: 0.9rem;
     }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: start;
-      gap: 20px;
-      padding-left: 20px; /* отступ для текста */
-    }
-
-    .signature {
-      height: 40px;
-      width: auto;
-      max-width: 150px;
-      object-fit: contain;
-      opacity: 0.95;
-      margin-top: 10px;
-      margin-left: -40px; /* сдвигаем подпись левее */
-    }
-
-    .title-block h1,
-    .title-block p {
-      margin: 0;
-      text-align: left;
-    }
   </style>
 </head>
 <body>
@@ -199,12 +189,10 @@
   </nav>
 
   <header>
-    <div class="header-inner">
-      <img src="signature.png" alt="Подпись" class="signature" />
-      <div class="title-block">
-        <h1>Александра Коваль / AKov</h1>
-        <p>Иллюстратор и арт-дизайнер</p>
-      </div>
+    <img src="signature.png" alt="Подпись" class="signature" />
+    <div class="title-block">
+      <h1>Александра Коваль / AKov</h1>
+      <p>Иллюстратор и арт-дизайнер</p>
     </div>
   </header>
 
