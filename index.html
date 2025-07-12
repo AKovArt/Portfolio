@@ -18,15 +18,17 @@
 
     /* Полупрозрачный узор поверх градиента */
     body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="none" stroke="%23c9b998" stroke-width="1"><circle cx="50" cy="50" r="40"/></svg>');
-      background-repeat: repeat;
-      background-size: 100px 100px;
-      opacity: 0.1;
-      pointer-events: none;
-      z-index: -1;
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: url('pattern.png'); /* ← укажи имя своего файла */
+  background-repeat: repeat;
+  background-size: 300px; /* или тот размер, который ты использовала */
+  opacity: 0.06; /* настрой по вкусу */
+  pointer-events: none;
+  z-index: -1;
+}
+
     }
 
     /* Стили для верхнего меню */
