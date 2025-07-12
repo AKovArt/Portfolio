@@ -180,15 +180,18 @@
       max-height: 90%;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: fadeZoomIn 0.4s ease;
     }
 
-    .lightbox-close {
-      position: absolute;
-      top: 30px;
-      right: 40px;
-      font-size: 2rem;
-      color: #fff;
-      cursor: pointer;
+    @keyframes fadeZoomIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .contact a {
@@ -211,39 +214,6 @@
       background: #ddd;
       font-size: 0.9rem;
     }
-    /* Анимация появления изображения */
-    /* Анимация появления изображения */
-.lb-image {
-  animation: fadeZoomIn 0.4s ease;
-}
-
-@keyframes fadeZoomIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-    .lb-image.animated {
-  animation: fadeZoomIn 0.4s ease;
-}
-
-@keyframes fadeZoomIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.85);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-
   </style>
 </head>
 <body>
@@ -282,7 +252,6 @@
 
       <p>Для меня важно не просто создавать красивые изображения, а рассказывать истории через визуал и передавать настроение. Буду рада воплотить ваши идеи в выразительные иллюстрации.</p>
     </section>
-    </section>
 
     <section id="portfolio">
       <h2>Портфолио</h2>
@@ -299,23 +268,20 @@
     <section id="contacts" class="contact">
       <h2>Контакты</h2>
       <p>Напишите мне:</p>
-      
-        <a href="mailto:alex3934@mail.ru" target="_blank" rel="noopener noreferrer">
-          <i class="fas fa-envelope"></i> alex3934@mail.ru
-        </a><br />
-        <a href="https://instagram.com/AKOV_ART" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-instagram"></i> @AKOV_ART
-        </a><br />
-        <a href="https://t.me/Aleksandra_AKov" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-telegram-plane"></i> @Aleksandra_AKov
-        </a>
-      </p>
-  
+      <a href="mailto:alex3934@mail.ru" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-envelope"></i> alex3934@mail.ru
+      </a><br />
+      <a href="https://instagram.com/AKOV_ART" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i> @AKOV_ART
+      </a><br />
+      <a href="https://t.me/Aleksandra_AKov" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-telegram-plane"></i> @Aleksandra_AKov
+      </a>
     </section>
   </main>
 
   <div id="lightbox" class="lightbox">
-    <span class="lightbox-close">&times;</span>
+    <span class="lightbox-close" style="position:absolute;top:30px;right:40px;font-size:2rem;color:#fff;cursor:pointer;">&times;</span>
     <img class="lightbox-img" src="" alt="" />
   </div>
 
@@ -330,6 +296,9 @@
       img.addEventListener("click", () => {
         lightbox.classList.add("active");
         lightboxImg.src = img.src;
+        lightboxImg.classList.remove("fade");
+        void lightboxImg.offsetWidth; // принудительный reflow
+        lightboxImg.classList.add("fade");
       });
     });
 
@@ -345,18 +314,5 @@
       }
     });
   </script>
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const observer = new MutationObserver(() => {
-      const img = document.querySelector(".lb-image");
-      if (img && !img.classList.contains("animated")) {
-        img.classList.add("animated");
-      }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
-  });
-</script>
-
 </body>
 </html>
