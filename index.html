@@ -211,6 +211,22 @@
       background: #ddd;
       font-size: 0.9rem;
     }
+    /* Анимация появления изображения */
+.lb-image {
+  animation: fadeZoomIn 0.4s ease;
+}
+
+@keyframes fadeZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
   </style>
 </head>
 <body>
