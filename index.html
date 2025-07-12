@@ -165,6 +165,28 @@
       background: #ddd;
       font-size: 0.9rem;
     }
+
+    .header-inner {  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.signature {
+  height: 40px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  display: block;
+}
+
+
+.header-text h1,
+.header-text p {
+  margin: 0;
+  text-align: left;
+}
   </style>
 </head>
 <body>
@@ -185,25 +207,9 @@
     </div>
   </div>
 </header>
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
+  
 
-.signature {
-  height: 60px;
-  max-width: 150px;
-  opacity: 0.95;
-}
 
-.header-text h1,
-.header-text p {
-  margin: 0;
-  text-align: left;
-}
 
 
   <main>
