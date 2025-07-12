@@ -177,9 +177,34 @@
   </nav>
 
   <header>
-    <h1>Александра Коваль / AKov</h1>
-    <p>Иллюстратор и арт-дизайнер</p>
-  </header>
+  <div class="header-inner">
+    <img src="signature.png" alt="Подпись" class="signature" />
+    <div class="header-text">
+      <h1>Александра Коваль / AKov</h1>
+      <p>Иллюстратор и арт-дизайнер</p>
+    </div>
+  </div>
+</header>
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.signature {
+  height: 60px;
+  max-width: 150px;
+  opacity: 0.95;
+}
+
+.header-text h1,
+.header-text p {
+  margin: 0;
+  text-align: left;
+}
+
 
   <main>
     <section id="about">
