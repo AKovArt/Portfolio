@@ -219,6 +219,24 @@
       background: #ddd;
       font-size: 0.9rem;
     }
+
+    .lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 10002;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.lightbox-close:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .lightbox-prev,
 .lightbox-next {
   position: fixed;
@@ -314,7 +332,13 @@
   </main>
 
   <div id="lightbox" class="lightbox">
-  <span class="lightbox-close">&times;</span>
+<span class="lightbox-close" aria-label="Закрыть">
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" >
+    <line x1="18" y1="6" x2="6" y2="18" stroke="#C8A2C8" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="6" y1="6" x2="18" y2="18" stroke="#C8A2C8" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+</span>
+
  <span class="lightbox-prev">
   <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
     <path d="M15 18l-6-6 6-6" stroke="#C8A2C8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
