@@ -369,7 +369,7 @@
   function openLightbox(index) {
     currentIndex = index;
     lightbox.classList.add("active");
-    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.src = images[currentIndex].dataset.full;
   }
 
   function closeLightbox() {
@@ -379,12 +379,12 @@
 
   function showNext() {
     currentIndex = (currentIndex + 1) % images.length;
-    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.src = images[currentIndex].dataset.full;
   }
 
   function showPrev() {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
-    lightboxImg.src = images[currentIndex].src;
+    lightboxImg.src = images[currentIndex].dataset.full;
   }
 
   images.forEach((img, index) => {
