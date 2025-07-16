@@ -264,6 +264,31 @@
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+@media (max-width: 600px) {
+  .signature {
+    position: static;
+    transform: none;
+    display: block;
+    margin: 20px auto 0;
+    max-width: 160px;
+  }
+
+  header {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .title-block {
+    order: 1;
+  }
+
+  .signature {
+    order: 2;
+  }
+}
 
   </style>
 </head>
