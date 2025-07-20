@@ -269,7 +269,7 @@
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   header {
     padding-top: 40px;      /* уменьшаем верхний отступ */
     padding-bottom: 40px;   /* увеличиваем нижний, чтобы подпись поместилась */
@@ -282,14 +282,14 @@
   }
 
   .signature {
-    position: absolute;     /* фиксируем подпись относительно header */
+    position: relative;     /* фиксируем подпись относительно header */
     bottom: -60px;   /* смещаем вниз */
   
     left: 50%;              /* центрируем по горизонтали */
     transform: translateX(-50%);
     max-width: 100px !important; /* уменьшаем подпись */
     width: auto !important;
-    margin: 0 !important;
+    margin: -20px auto 60px; !important;
     opacity: 0.95;
     z-index: 10;            /* чтобы подпись была поверх */
   }
@@ -319,12 +319,12 @@
     
       <h1>Александра Коваль / AKov</h1>
       <p>Иллюстратор и арт-дизайнер</p>
-      <img src="signature.png" alt="Подпись" class="signature" />
+      
     </div>
     
   </div>
 </header>
-
+<img src="signature.png" alt="Подпись" class="signature" />
 
   <main>
     <section id="about">
