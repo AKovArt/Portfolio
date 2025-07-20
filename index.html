@@ -269,20 +269,26 @@
 }
 
 @media (max-width: 768px) {
-  .header-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  header {
+    padding: 20px 20px 60px 20px; /* уменьшили сверху, увеличили снизу для подписи */
+    overflow: visible; /* чтобы подпись могла выходить */
   }
 
   .signature {
-    position: static !important;
-    transform: none !important;
-    margin: 20px auto 0 !important;
-    max-width: 140px !important;
+    position: absolute;
+    bottom: -30px; /* подпись сместится вниз за пределы шапки */
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 140px;
+    margin: 0 !important;
+    opacity: 0.95;
+  }
+
+  .header-inner {
+    position: relative; /* чтобы позиционирование подписи работало относительно шапки */
   }
 }
+
 
 
 
