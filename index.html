@@ -73,13 +73,16 @@
 
     
 
-.signature {
-  position: relative;
-  max-width: 120px;
-  display: block;
-  margin: 0 auto;
-}
 
+.signature {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 100px;  /* большая подпись */
+  opacity: 0.6;
+  width: auto;
+}
 
 
     .title-block {
@@ -282,8 +285,15 @@
   }
 
 
-  .signature {
-    max-width: 100px;
+ .signature {
+    position: static !important;
+    max-width: 140px;
+    margin-top: -40px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transform: none !important;
+    opacity: 0.95; /* возвращаем прозрачность */
   }
 
   
