@@ -79,8 +79,8 @@
   left: 65%;
   top: 10%;
   transform: translateY(-50%);
-  max-width: 120px;  /* большая подпись */
-  opacity: 0.6;
+  max-width: 150px;  /* большая подпись */
+  opacity: 0.95;
   width: auto;
 }
 
@@ -284,26 +284,15 @@
   .header-inner {
     position: relative;     /* для позиционирования подписи внутри шапки */
   }
-
-
- .signature {
-    position: static !important;
-    max-width: 100px;
-    margin-top: -60px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    transform: none !important;
-    opacity: 0.95; /* возвращаем прозрачность */
+  .signature {
+    position: static;          /* чтобы по потоку, не абсолютная */
+    margin: 20px auto 0;       /* сверху отступ, по центру */
+    max-width: 140px;          /* чуть меньше */
+    opacity: 0.5;              /* полупрозрачная */
+    display: block;            /* чтобы центрировалась */
+    transform: none;           /* убрать трансформации */
   }
-
-  
-
-
 }
-
-
-
 
 
 
