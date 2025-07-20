@@ -268,24 +268,29 @@
   position: relative;
 }
 
+
 @media (max-width: 768px) {
   header {
-    padding: 20px 20px 60px 20px; /* уменьшили сверху, увеличили снизу для подписи */
-    overflow: visible; /* чтобы подпись могла выходить */
-  }
-
-  .signature {
-    position: absolute;
-    bottom: -30px; /* подпись сместится вниз за пределы шапки */
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 140px;
-    margin: 0 !important;
-    opacity: 0.95;
+    padding-top: 20px;      /* уменьшаем верхний отступ */
+    padding-bottom: 80px;   /* увеличиваем нижний, чтобы подпись поместилась */
+    position: relative;     /* для позиционирования подписи */
+    overflow: visible;      /* чтобы подпись могла выходить за пределы */
   }
 
   .header-inner {
-    position: relative; /* чтобы позиционирование подписи работало относительно шапки */
+    position: relative;     /* для позиционирования подписи внутри шапки */
+  }
+
+  .signature {
+    position: absolute;     /* фиксируем подпись относительно header */
+    bottom: 10px;           /* смещаем вниз */
+    left: 50%;              /* центрируем по горизонтали */
+    transform: translateX(-50%);
+    max-width: 100px !important; /* уменьшаем подпись */
+    width: auto !important;
+    margin: 0 !important;
+    opacity: 0.95;
+    z-index: 10;            /* чтобы подпись была поверх */
   }
 }
 
