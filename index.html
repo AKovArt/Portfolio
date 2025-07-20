@@ -72,15 +72,13 @@
     }
 
     .signature {
-      position: absolute;
-      left: 40px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: auto;
-      max-width: 200px;
-      object-fit: contain;
-      opacity: 0.95;
-    }
+  display: block;
+  margin: -40px auto 60px; /* поднимаем на границу чёрного и лавандового */
+  max-width: 140px;
+  width: auto;
+  opacity: 0.95;
+}
+
 
     .title-block {
       max-width: 800px;
@@ -281,18 +279,13 @@
     position: relative;     /* для позиционирования подписи внутри шапки */
   }
 
-  .signature {
-    position: absolute;     /* фиксируем подпись относительно header */
-    bottom: -60px;   /* смещаем вниз */
-  
-    left: 50%;              /* центрируем по горизонтали */
-    transform: translateX(-50%);
-    max-width: 100px !important; /* уменьшаем подпись */
-    width: auto !important;
-    margin: -20px auto 60px; !important;
-    opacity: 0.95;
-    z-index: 10;            /* чтобы подпись была поверх */
-  }
+
+  .signature {
+    max-width: 100px;
+    margin: -20px auto 50px;
+  }
+
+
 }
 
 
