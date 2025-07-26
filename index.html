@@ -542,7 +542,6 @@
 
   </script>
   
-
 <script>
 const track = document.querySelector('.carousel-track');
 let carouselImages = Array.from(track.children);
@@ -551,15 +550,20 @@ const carouselnextBtn = document.querySelector('.carousel-btn.next');
 
 let slideWidth = carouselImages[0].clientWidth + 20;
 
-const firstClone = carouselImages[0].cloneNode(true);
+// Клоны:
+// клонируем последний (для вставки в начало)
 const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
+// клонируем первый (для вставки в конец)
+const firstClone = carouselImages[0].cloneNode(true);
+// клонируем второй (для вставки в конец после первого клона)
+const secondClone = carouselImages[1].cloneNode(true);
 
-// 👇 ПРАВИЛЬНЫЙ порядок клонов
 track.insertBefore(lastClone, track.firstChild);
 track.appendChild(firstClone);
+track.appendChild(secondClone);
 
 carouselImages = Array.from(track.children);
-let index = 1; // первый реальный слайд
+let index = 1; // Начинаем с первого реального слайда
 
 function setPositionWithoutTransition(idx) {
   const containerWidth = track.parentElement.clientWidth;
@@ -602,22 +606,31 @@ carouselprevBtn.addEventListener('click', () => {
   updateCarousel();
 });
 
-// Зацикливание
+// Зацикливание на клонах
 track.addEventListener('transitionend', () => {
+  // Если дошли до клона первого слайда (index == carouselImages.length - 2)
   if (carouselImages[index].isEqualNode(firstClone)) {
-    index = 1;
+    index = 1; // прыгаем на первый реальный слайд
+    setPositionWithoutTransition(index);
+    updateActiveSlide();
+  }
+  
+  // Если дошли до клона второго слайда (последний элемент в массиве)
+  if (carouselImages[index].isEqualNode(secondClone)) {
+    index = 2; // прыгаем на второй реальный слайд
     setPositionWithoutTransition(index);
     updateActiveSlide();
   }
 
+  // Если дошли до клона последнего слайда (index == 0)
   if (carouselImages[index].isEqualNode(lastClone)) {
-    index = carouselImages.length - 2;
+    index = carouselImages.length - 3; // прыгаем на последний реальный слайд
     setPositionWithoutTransition(index);
     updateActiveSlide();
   }
 });
-</script>
 
+</script>
 
 
 
