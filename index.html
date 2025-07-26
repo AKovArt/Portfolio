@@ -549,16 +549,17 @@ let carouselImages = Array.from(track.children);
 const carouselprevBtn = document.querySelector('.carousel-btn.prev');
 const carouselnextBtn = document.querySelector('.carousel-btn.next');
 
-let index = 1;
 let slideWidth = carouselImages[0].clientWidth + 20;
 
 const firstClone = carouselImages[0].cloneNode(true);
 const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
 
+// 👇 ПРАВИЛЬНЫЙ порядок клонов
+track.insertBefore(lastClone, track.firstChild);
 track.appendChild(firstClone);
-track.insertBefore(lastClone, carouselImages[0]);
 
 carouselImages = Array.from(track.children);
+let index = 1; // первый реальный слайд
 
 function setPositionWithoutTransition(idx) {
   const containerWidth = track.parentElement.clientWidth;
@@ -584,9 +585,11 @@ function updateCarousel() {
   updateActiveSlide();
 }
 
+// Инициализация позиции
 setPositionWithoutTransition(index);
 updateActiveSlide();
 
+// Кнопки
 carouselnextBtn.addEventListener('click', () => {
   if (index >= carouselImages.length - 1) return;
   index++;
@@ -599,12 +602,14 @@ carouselprevBtn.addEventListener('click', () => {
   updateCarousel();
 });
 
+// Зацикливание
 track.addEventListener('transitionend', () => {
   if (carouselImages[index].isEqualNode(firstClone)) {
     index = 1;
     setPositionWithoutTransition(index);
     updateActiveSlide();
   }
+
   if (carouselImages[index].isEqualNode(lastClone)) {
     index = carouselImages.length - 2;
     setPositionWithoutTransition(index);
