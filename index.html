@@ -321,7 +321,6 @@
   transition: transform 0.8s ease;
   transform-style: preserve-3d;
   gap: 20px;
-  justify-content: center;
   align-items: center;
 }
 
@@ -531,40 +530,39 @@
   </script>
   <script>
   const track = document.querySelector('.carousel-track');
-  const images = Array.from(track.children);
-  const prevBtn = document.querySelector('.carousel-btn.prev');
-  const nextBtn = document.querySelector('.carousel-btn.next');
-  let index = 0;
+const carouselImages = Array.from(track.children);
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+let index = 0;
 
-  function updateCarousel() {
-    images.forEach((img, i) => {
-      img.classList.remove('active');
-    });
+function updateCarousel() {
+  carouselImages.forEach(img => img.classList.remove('active'));
 
-    const total = images.length;
-    const visible = 3; // центровое + два по бокам
+  const total = carouselImages.length;
 
-    for (let i = -1; i <= 1; i++) {
-      const imgIndex = (index + i + total) % total;
-      images[imgIndex].classList.add(i === 0 ? 'active' : '');
+  for (let i = -1; i <= 1; i++) {
+    const imgIndex = (index + i + total) % total;
+    if (i === 0) {
+      carouselImages[imgIndex].classList.add('active');
     }
-
-    // сдвигаем карусель
-    const offset = -index * (270); // ширина картинки + gap
-    track.style.transform = `translateX(${offset}px)`;
   }
 
-  nextBtn.addEventListener('click', () => {
-    index = (index + 1) % images.length;
-    updateCarousel();
-  });
+  const offset = -index * (250 + 20); // ширина картинки + gap
+  track.style.transform = `translateX(${offset}px)`;
+}
 
-  prevBtn.addEventListener('click', () => {
-    index = (index - 1 + images.length) % images.length;
-    updateCarousel();
-  });
+nextBtn.addEventListener('click', () => {
+  index = (index + 1) % carouselImages.length;
+  updateCarousel();
+});
 
-  updateCarousel(); // начальная отрисовка
+prevBtn.addEventListener('click', () => {
+  index = (index - 1 + carouselImages.length) % carouselImages.length;
+  updateCarousel();
+});
+
+updateCarousel();
+
 </script>
 
 
