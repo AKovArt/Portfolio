@@ -543,38 +543,37 @@
   </script>
   
 <script>
-const track = document.querySelector('.carousel-track');
+  const track = document.querySelector('.carousel-track');
 let carouselImages = Array.from(track.children);
 const carouselprevBtn = document.querySelector('.carousel-btn.prev');
 const carouselnextBtn = document.querySelector('.carousel-btn.next');
 
 let slideWidth = carouselImages[0].clientWidth + 20;
 
-// Клоны:
+// Создаём клоны
 const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
 const firstClone = carouselImages[0].cloneNode(true);
 const secondClone = carouselImages[1].cloneNode(true);
 
+// Вставляем клоны: последний в начало, первый и второй в конец
 track.insertBefore(lastClone, track.firstChild);
 track.appendChild(firstClone);
 track.appendChild(secondClone);
 
+// Обновляем список слайдов
 carouselImages = Array.from(track.children);
-let index = 1; // Начинаем с первого реального слайда
 
-let isJumping = false; // флаг блокировки во время прыжка
+let index = 1; // стартуем с первого оригинального слайда
+let isJumping = false; // флаг блокировки во время безанимационного прыжка
 
-function setPositionWithoutTransition(idx) {
+function setPosition(idx, withTransition = true) {
   const containerWidth = track.parentElement.clientWidth;
   const offset = -idx * slideWidth + (containerWidth - slideWidth) / 2;
-  track.style.transition = 'none';
-  track.style.transform = `translateX(${offset}px)`;
-}
-
-function setPosition() {
-  const containerWidth = track.parentElement.clientWidth;
-  const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
-  track.style.transition = 'transform 0.5s ease';
+  if (withTransition) {
+    track.style.transition = 'transform 0.5s ease';
+  } else {
+    track.style.transition = 'none';
+  }
   track.style.transform = `translateX(${offset}px)`;
 }
 
@@ -584,15 +583,15 @@ function updateActiveSlide() {
 }
 
 function updateCarousel() {
-  setPosition();
+  setPosition(index, true);
   updateActiveSlide();
 }
 
-// Инициализация позиции
-setPositionWithoutTransition(index);
+// Инициализация позиции без анимации
+setPosition(index, false);
 updateActiveSlide();
 
-// Кнопки
+// Обработчики кнопок с учётом блокировки
 carouselnextBtn.addEventListener('click', () => {
   if (isJumping) return;
   if (index >= carouselImages.length - 1) return;
@@ -607,35 +606,40 @@ carouselprevBtn.addEventListener('click', () => {
   updateCarousel();
 });
 
-// Зацикливание с блокировкой прыжка
+// Обработчик конца перехода для зацикливания без мерцаний
 track.addEventListener('transitionend', () => {
   if (carouselImages[index].isEqualNode(firstClone)) {
     isJumping = true;
-    index = 1;
-    setPositionWithoutTransition(index);
+    index = 1; // первый оригинал
+    setPosition(index, false);
     updateActiveSlide();
-    setTimeout(() => {
+    requestAnimationFrame(() => {
+      // Возвращаем плавность переходов
+      track.style.transition = 'transform 0.5s ease';
       isJumping = false;
-    }, 50);
+    });
   } else if (carouselImages[index].isEqualNode(secondClone)) {
     isJumping = true;
-    index = 2;
-    setPositionWithoutTransition(index);
+    index = 2; // второй оригинал
+    setPosition(index, false);
     updateActiveSlide();
-    setTimeout(() => {
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.5s ease';
       isJumping = false;
-    }, 50);
+    });
   } else if (carouselImages[index].isEqualNode(lastClone)) {
     isJumping = true;
-    index = carouselImages.length - 3;
-    setPositionWithoutTransition(index);
+    index = carouselImages.length - 3; // последний оригинал
+    setPosition(index, false);
     updateActiveSlide();
-    setTimeout(() => {
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.5s ease';
       isJumping = false;
-    }, 50);
+    });
   }
 });
-  </script>
+
+</script>
 
 
 
