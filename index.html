@@ -551,11 +551,8 @@ const carouselnextBtn = document.querySelector('.carousel-btn.next');
 let slideWidth = carouselImages[0].clientWidth + 20;
 
 // Клоны:
-// клонируем последний (для вставки в начало)
 const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
-// клонируем первый (для вставки в конец)
 const firstClone = carouselImages[0].cloneNode(true);
-// клонируем второй (для вставки в конец после первого клона)
 const secondClone = carouselImages[1].cloneNode(true);
 
 track.insertBefore(lastClone, track.firstChild);
@@ -564,6 +561,8 @@ track.appendChild(secondClone);
 
 carouselImages = Array.from(track.children);
 let index = 1; // Начинаем с первого реального слайда
+
+let isJumping = false; // флаг блокировки во время прыжка
 
 function setPositionWithoutTransition(idx) {
   const containerWidth = track.parentElement.clientWidth;
@@ -595,43 +594,48 @@ updateActiveSlide();
 
 // Кнопки
 carouselnextBtn.addEventListener('click', () => {
+  if (isJumping) return;
   if (index >= carouselImages.length - 1) return;
   index++;
   updateCarousel();
 });
 
 carouselprevBtn.addEventListener('click', () => {
+  if (isJumping) return;
   if (index <= 0) return;
   index--;
   updateCarousel();
 });
 
-// Зацикливание на клонах
+// Зацикливание с блокировкой прыжка
 track.addEventListener('transitionend', () => {
-  // Если дошли до клона первого слайда (index == carouselImages.length - 2)
   if (carouselImages[index].isEqualNode(firstClone)) {
-    index = 1; // прыгаем на первый реальный слайд
+    isJumping = true;
+    index = 1;
     setPositionWithoutTransition(index);
     updateActiveSlide();
-  }
-  
-  // Если дошли до клона второго слайда (последний элемент в массиве)
-  if (carouselImages[index].isEqualNode(secondClone)) {
-    index = 2; // прыгаем на второй реальный слайд
+    setTimeout(() => {
+      isJumping = false;
+    }, 50);
+  } else if (carouselImages[index].isEqualNode(secondClone)) {
+    isJumping = true;
+    index = 2;
     setPositionWithoutTransition(index);
     updateActiveSlide();
-  }
-
-  // Если дошли до клона последнего слайда (index == 0)
-  if (carouselImages[index].isEqualNode(lastClone)) {
-    index = carouselImages.length - 3; // прыгаем на последний реальный слайд
+    setTimeout(() => {
+      isJumping = false;
+    }, 50);
+  } else if (carouselImages[index].isEqualNode(lastClone)) {
+    isJumping = true;
+    index = carouselImages.length - 3;
     setPositionWithoutTransition(index);
     updateActiveSlide();
+    setTimeout(() => {
+      isJumping = false;
+    }, 50);
   }
 });
-
-</script>
-
+  </script>
 
 
 
