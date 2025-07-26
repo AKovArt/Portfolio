@@ -535,8 +535,8 @@
     if (e.target === lightbox) closeLightbox();
   });
 
-  nextBtn.addEventListener("click", showNext);
-  prevBtn.addEventListener("click", showPrev);
+  lightboxnextBtn.addEventListener("click", showNext);
+  lightboxprevBtn.addEventListener("click", showPrev);
 
   </script>
   
@@ -561,12 +561,12 @@ function updateCarousel() {
 }
 
 
-nextBtn.addEventListener('click', () => {
+carouselnextBtn.addEventListener('click', () => {
   index = (index + 1) % carouselImages.length;
   updateCarousel();
 });
 
-prevBtn.addEventListener('click', () => {
+carouselprevBtn.addEventListener('click', () => {
   index = (index - 1 + carouselImages.length) % carouselImages.length;
   updateCarousel();
 });
