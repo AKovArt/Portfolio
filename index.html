@@ -528,24 +528,21 @@ const track = document.querySelector('.carousel-track');
 const carouselImages = Array.from(track.children);
 const prevBtn = document.querySelector('.carousel-btn.prev');
 const nextBtn = document.querySelector('.carousel-btn.next');
+    
+
 let index = 0;
 
 function updateCarousel() {
   carouselImages.forEach(img => img.classList.remove('active'));
+  carouselImages[index].classList.add('active');
 
-  const total = carouselImages.length;
+  const slideWidth = carouselImages[0].clientWidth + 20; // ширина + gap
+  const containerWidth = track.parentElement.clientWidth;
+  const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
 
-  for (let i = -1; i <= 1; i++) {
-    const imgIndex = (index + i + total) % total;
-    if (i === 0) {
-      carouselImages[imgIndex].classList.add('active');
-    }
-  }
-
-  // смещаем трек, чтобы центральное было по центру
-  const offset = -index * (carouselImages[0].clientWidth + 20); // 20 — gap
   track.style.transform = `translateX(${offset}px)`;
 }
+
 
 nextBtn.addEventListener('click', () => {
   index = (index + 1) % carouselImages.length;
