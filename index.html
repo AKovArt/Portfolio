@@ -441,14 +441,15 @@
   <div class="carousel-container">
     <button class="carousel-btn prev">&#10094;</button>
     <div class="carousel-track-wrapper">
-    <div class="carousel-track">
-      <img src="11_tumb.png" alt="Слайд 1" class="carousel-image"/>
-      <img src="10_tumb.png" alt="Слайд 2" class="carousel-image"/>
-      <img src="12_tumb.png" alt="Слайд 3" class="carousel-image"/>
-      <img src="7_tumb.png" alt="Слайд 4" class="carousel-image"/>
+        <div class="carousel-track">
+          <img src="11_tumb.png" alt="Слайд 1" class="carousel-image"/>
+          <img src="10_tumb.png" alt="Слайд 2" class="carousel-image"/>
+          <img src="12_tumb.png" alt="Слайд 3" class="carousel-image"/>
+          <img src="7_tumb.png" alt="Слайд 4" class="carousel-image"/>
+        </div>
     </div>
     <button class="carousel-btn next">&#10095;</button>
-  </div>
+ </div>
 </section>
 
 
@@ -497,8 +498,8 @@
   const lightbox = document.getElementById("lightbox");
   const lightboxImg = document.querySelector(".lightbox-img");
   const lightboxClose = document.querySelector(".lightbox-close");
-  const prevBtn = document.querySelector(".lightbox-prev");
-  const nextBtn = document.querySelector(".lightbox-next");
+  const lightboxprevBtn = document.querySelector(".lightbox-prev");
+  const lightboxnextBtn = document.querySelector(".lightbox-next");
   const images = document.querySelectorAll(".portfolio-grid img");
   let currentIndex = 0;
 
@@ -538,11 +539,12 @@
   prevBtn.addEventListener("click", showPrev);
 
   </script>
+  
   <script>
 const track = document.querySelector('.carousel-track');
 const carouselImages = Array.from(track.children);
-const prevBtn = document.querySelector('.carousel-btn.prev');
-const nextBtn = document.querySelector('.carousel-btn.next');
+const carouselprevBtn = document.querySelector('.carousel-btn.prev');
+const carouselnextBtn = document.querySelector('.carousel-btn.next');
     
 
 let index = 0;
