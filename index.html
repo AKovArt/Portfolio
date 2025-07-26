@@ -542,32 +542,34 @@
 
   </script>
   
-
 <script>
 const track = document.querySelector('.carousel-track');
 let carouselImages = Array.from(track.children);
 const carouselprevBtn = document.querySelector('.carousel-btn.prev');
 const carouselnextBtn = document.querySelector('.carousel-btn.next');
 
-let index = 1; // начинаем с 1, потому что будет дубликат в начале
+let index = 1; // начинаем со второго слайда, т.к. первый — клон последнего
 let slideWidth = carouselImages[0].clientWidth + 20;
 
-// Дублируем крайние слайды
+// Клонируем крайние слайды
 const firstClone = carouselImages[0].cloneNode(true);
 const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
 
 track.appendChild(firstClone);
 track.insertBefore(lastClone, carouselImages[0]);
 
-// Обновим массив
+// Обновляем массив слайдов
 carouselImages = Array.from(track.children);
 
-// Устанавливаем начальное смещение (первый "настоящий" слайд)
-function setInitialPosition() {
+function setPosition() {
   const containerWidth = track.parentElement.clientWidth;
   const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
-  track.style.transition = 'none';
   track.style.transform = `translateX(${offset}px)`;
+}
+
+function setInitialPosition() {
+  track.style.transition = 'none';
+  setPosition();
   carouselImages.forEach(img => img.classList.remove('active'));
   carouselImages[index].classList.add('active');
 }
@@ -577,40 +579,26 @@ function updateCarousel() {
   carouselImages.forEach(img => img.classList.remove('active'));
   carouselImages[index].classList.add('active');
 
-  const containerWidth = track.parentElement.clientWidth;
-  const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
-
   track.style.transition = 'transform 0.5s ease';
-  track.style.transform = `translateX(${offset}px)`;
+  setPosition();
 }
 
 carouselnextBtn.addEventListener('click', () => {
   if (index >= carouselImages.length - 1) return;
   index++;
   updateCarousel();
-
-  track.addEventListener('transitionend', () => {
-    if (carouselImages[index].isEqualNode(firstClone)) {
-      index = 1;
-      setInitialPosition();
-    }
-  }, { once: true });
 });
 
 carouselprevBtn.addEventListener('click', () => {
   if (index <= 0) return;
   index--;
   updateCarousel();
+});
 
-  track.addEventListener('transitionend', () => {
-    if (carouselImages[index].isEqualNode(lastClone)) {
-      index = carouselImages.length - 2;
-      setInitialPosition();
-    }
-  }, { once: true });
-}
-);
-</script>
+// Обработчик окончания перехода для плавного "зацикливания"
+track.addEventListener('transitionend', () => {
+  if (c
+
 
 
 </body>
