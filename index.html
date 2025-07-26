@@ -325,21 +325,16 @@
 }
 
 .carousel-track img {
-  width: 250px;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transform: scale(0.8);
   opacity: 0.5;
-  transition: transform 0.5s, opacity 0.5s, filter 0.5s;
-  filter: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: scale(0.8);
 }
 
 .carousel-track img.active {
-  transform: scale(1);
   opacity: 1;
-  filter: none;
+  transform: scale(1);
 }
+
 
 .carousel-btn {
   position: absolute;
@@ -529,7 +524,7 @@
 
   </script>
   <script>
-  const track = document.querySelector('.carousel-track');
+const track = document.querySelector('.carousel-track');
 const carouselImages = Array.from(track.children);
 const prevBtn = document.querySelector('.carousel-btn.prev');
 const nextBtn = document.querySelector('.carousel-btn.next');
@@ -547,7 +542,8 @@ function updateCarousel() {
     }
   }
 
-  const offset = -index * (250 + 20); // ширина картинки + gap
+  // смещаем трек, чтобы центральное было по центру
+  const offset = -index * (carouselImages[0].clientWidth + 20); // 20 — gap
   track.style.transform = `translateX(${offset}px)`;
 }
 
@@ -561,7 +557,9 @@ prevBtn.addEventListener('click', () => {
   updateCarousel();
 });
 
+// Начальная отрисовка
 updateCarousel();
+
 
 </script>
 
