@@ -597,7 +597,24 @@ carouselprevBtn.addEventListener('click', () => {
 
 // Обработчик окончания перехода для плавного "зацикливания"
 track.addEventListener('transitionend', () => {
-  if (c
+  if (carouselImages[index].isEqualNode(firstClone)) {
+    track.style.transition = 'none';
+    index = 1;
+    setPosition();
+    carouselImages.forEach(img => img.classList.remove('active'));
+    carouselImages[index].classList.add('active');
+  }
+
+  if (carouselImages[index].isEqualNode(lastClone)) {
+    track.style.transition = 'none';
+    index = carouselImages.length - 2;
+    setPosition();
+    carouselImages.forEach(img => img.classList.remove('active'));
+    carouselImages[index].classList.add('active');
+  }
+});
+</script>
+
 
 
 
