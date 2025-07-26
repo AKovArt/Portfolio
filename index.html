@@ -568,6 +568,8 @@ function setInitialPosition() {
   const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
   track.style.transition = 'none';
   track.style.transform = `translateX(${offset}px)`;
+  carouselImages.forEach(img => img.classList.remove('active'));
+  carouselImages[index].classList.add('active');
 }
 setInitialPosition();
 
