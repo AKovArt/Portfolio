@@ -543,39 +543,76 @@
   </script>
   
   <script>
+
 const track = document.querySelector('.carousel-track');
-const carouselImages = Array.from(track.children);
 const carouselprevBtn = document.querySelector('.carousel-btn.prev');
 const carouselnextBtn = document.querySelector('.carousel-btn.next');
-    
 
-let index = 0;
+const originalSlides = Array.from(track.children);
+const slideCount = originalSlides.length;
 
-function updateCarousel() {
+const clonesBefore = 2;
+const clonesAfter = 2;
+
+// Добавляем клонированные слайды в конец
+for (let i = 0; i < clonesAfter; i++) {
+  const clone = originalSlides[i].cloneNode(true);
+  clone.classList.add('clone');
+  track.appendChild(clone);
+}
+
+// Добавляем клонированные слайды в начало
+for (let i = slideCount - clonesBefore; i < slideCount; i++) {
+  const clone = originalSlides[i].cloneNode(true);
+  clone.classList.add('clone');
+  track.insertBefore(clone, track.firstChild);
+}
+
+// Обновляем массив слайдов после добавления клонов
+const carouselImages = Array.from(track.children);
+
+let index = clonesBefore; // стартуем с первого оригинального слайда
+
+function updateCarousel(withTransition = true) {
   carouselImages.forEach(img => img.classList.remove('active'));
   carouselImages[index].classList.add('active');
 
-  const slideWidth = carouselImages[0].clientWidth + 20; // ширина + gap
+  const slideWidth = carouselImages[0].clientWidth + 20; // ширина слайда + gap
   const containerWidth = track.parentElement.clientWidth;
   const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
+
+  if (withTransition) {
+    track.style.transition = 'transform 0.5s ease';
+  } else {
+    track.style.transition = 'none';
+  }
 
   track.style.transform = `translateX(${offset}px)`;
 }
 
-
 carouselnextBtn.addEventListener('click', () => {
-  index = (index + 1) % carouselImages.length;
+  index++;
   updateCarousel();
 });
 
 carouselprevBtn.addEventListener('click', () => {
-  index = (index - 1 + carouselImages.length) % carouselImages.length;
+  index--;
   updateCarousel();
 });
 
-// Начальная отрисовка
-updateCarousel();
+// После завершения анимации проверяем — если вышли за пределы оригинальных слайдов, переключаемся моментально
+track.addEventListener('transitionend', () => {
+  if (index >= slideCount + clonesBefore) {
+    index = clonesBefore;
+    updateCarousel(false);
+  } else if (index < clonesBefore) {
+    index = slideCount + clonesBefore - 1;
+    updateCarousel(false);
+  }
+});
 
+// Инициализация
+updateCarousel(false);
 
 </script>
 
