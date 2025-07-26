@@ -307,6 +307,67 @@
 }
 
 
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-track img {
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transform: scale(0.8);
+  opacity: 0.5;
+  transition: transform 0.5s, opacity 0.5s, filter 0.5s;
+  filter: blur(2px);
+}
+
+.carousel-track img.active {
+  transform: scale(1);
+  opacity: 1;
+  filter: none;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.2);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0,0,0,0.4);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
 
 
   </style>
@@ -367,6 +428,20 @@
         <img src="9_tumb.png" alt="3" data-full="9.png"/>
       </div>
     </section>
+    <section id="carousel" style="margin-top: 80px;">
+  <h2>Слайды портфолио</h2>
+  <div class="carousel-container">
+    <button class="carousel-btn prev">&#10094;</button>
+    <div class="carousel-track">
+      <img src="11.png" alt="Слайд 1" />
+      <img src="10.png" alt="Слайд 2" />
+      <img src="12.png" alt="Слайд 3" />
+      <img src="7.png" alt="Слайд 4" />
+    </div>
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+</section>
+
 
     <section id="contacts" class="contact">
       <h2>Контакты</h2>
@@ -453,6 +528,44 @@
   nextBtn.addEventListener("click", showNext);
   prevBtn.addEventListener("click", showPrev);
 </script>
+  <script>
+  const track = document.querySelector('.carousel-track');
+  const images = Array.from(track.children);
+  const prevBtn = document.querySelector('.carousel-btn.prev');
+  const nextBtn = document.querySelector('.carousel-btn.next');
+  let index = 0;
+
+  function updateCarousel() {
+    images.forEach((img, i) => {
+      img.classList.remove('active');
+    });
+
+    const total = images.length;
+    const visible = 3; // центровое + два по бокам
+
+    for (let i = -1; i <= 1; i++) {
+      const imgIndex = (index + i + total) % total;
+      images[imgIndex].classList.add(i === 0 ? 'active' : '');
+    }
+
+    // сдвигаем карусель
+    const offset = -index * (270); // ширина картинки + gap
+    track.style.transform = `translateX(${offset}px)`;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    index = (index + 1) % images.length;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    index = (index - 1 + images.length) % images.length;
+    updateCarousel();
+  });
+
+  updateCarousel(); // начальная отрисовка
+</script>
+
 
 </body>
 </html>
