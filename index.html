@@ -601,13 +601,30 @@ carouselprevBtn.addEventListener('click', () => {
 });
 
 // После завершения анимации проверяем — если вышли за пределы оригинальных слайдов, переключаемся моментально
+
 track.addEventListener('transitionend', () => {
   if (index >= slideCount + clonesBefore) {
     index = clonesBefore;
-    updateCarousel(false);
+    track.style.transition = 'none';
+    const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
+    track.style.transform = `translateX(${offset}px)`;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        track.style.transition = 'transform 0.5s ease';
+      });
+    });
   } else if (index < clonesBefore) {
     index = slideCount + clonesBefore - 1;
-    updateCarousel(false);
+    track.style.transition = 'none';
+    const offset = -index * slideWidth + (containerWidth - slideWidth) / 2;
+    track.style.transform = `translateX(${offset}px)`;
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        track.style.transition = 'transform 0.5s ease';
+      });
+    });
   }
 });
 
