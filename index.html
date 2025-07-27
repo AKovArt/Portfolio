@@ -374,8 +374,6 @@
 
   </style>
 </head>
-
-  
 <body>
   <nav class="top-menu">
     <ul>
@@ -529,49 +527,121 @@
   }
 
   images.forEach((img, index) => {
-    img.addEventListener("click", () => openLightbox(index));
+    img.addEventListener("click", () => {
+      openLightbox(index);
+    });
   });
 
   lightboxClose.addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
   lightboxnextBtn.addEventListener("click", showNext);
   lightboxprevBtn.addEventListener("click", showPrev);
 
-  lightbox.addEventListener("click", (e) => {
-    if (e.target === lightbox) {
-      closeLightbox();
-    }
-  });
-  </script>
-  <script>
-  // Карусель
+  </script>
+  
+<script>
+  const track = document.querySelector('.carousel-track');
+let carouselImages = Array.from(track.children);
+const carouselprevBtn = document.querySelector('.carousel-btn.prev');
+const carouselnextBtn = document.querySelector('.carousel-btn.next');
 
-  const track = document.querySelector(".carousel-track");
-  const slides = Array.from(track.children);
-  const carouselprevBtn = document.querySelector(".carousel-btn.prev");
-  const carouselnextBtn = document.querySelector(".carousel-btn.next");
-  let currentSlide = 0;
+let slideWidth = carouselImages[0].clientWidth + 20;
 
-  function updateCarousel() {
-    const slideWidth = slides[0].getBoundingClientRect().width;
-    const moveX = -slideWidth * currentSlide;
-    track.style.transform = `translateX(${moveX}px)`;
+// Создаём клоны
+const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
+const firstClone = carouselImages[0].cloneNode(true);
+const secondClone = carouselImages[1].cloneNode(true);
 
-    slides.forEach((slide, idx) => {
-      slide.classList.toggle("active", idx === currentSlide);
+// Вставляем клоны: последний в начало, первый и второй в конец
+track.insertBefore(lastClone, track.firstChild);
+track.appendChild(firstClone);
+track.appendChild(secondClone);
+
+// Обновляем список слайдов
+carouselImages = Array.from(track.children);
+
+let index = 1; // стартуем с первого оригинального слайда
+let isJumping = false; // флаг блокировки во время безанимационного прыжка
+
+function setPosition(idx, withTransition = true) {
+  const containerWidth = track.parentElement.clientWidth;
+  const offset = -idx * slideWidth + (containerWidth - slideWidth) / 2;
+  if (withTransition) {
+    track.style.transition = 'transform 0.5s ease';
+  } else {
+    track.style.transition = 'none';
+  }
+  track.style.transform = `translateX(${offset}px)`;
+}
+
+function updateActiveSlide() {
+  carouselImages.forEach(img => img.classList.remove('active'));
+  carouselImages[index].classList.add('active');
+}
+
+function updateCarousel() {
+  setPosition(index, true);
+  updateActiveSlide();
+}
+
+// Инициализация позиции без анимации
+setPosition(index, false);
+updateActiveSlide();
+
+// Обработчики кнопок с учётом блокировки
+carouselnextBtn.addEventListener('click', () => {
+  if (isJumping) return;
+  if (index >= carouselImages.length - 1) return;
+  index++;
+  updateCarousel();
+});
+
+carouselprevBtn.addEventListener('click', () => {
+  if (isJumping) return;
+  if (index <= 0) return;
+  index--;
+  updateCarousel();
+});
+
+// Обработчик конца перехода для зацикливания без мерцаний
+track.addEventListener('transitionend', () => {
+  if (carouselImages[index].isEqualNode(firstClone)) {
+    isJumping = true;
+    index = 1; // первый оригинал
+    setPosition(index, false);
+    updateActiveSlide();
+    requestAnimationFrame(() => {
+      // Возвращаем плавность переходов
+      track.style.transition = 'transform 0.5s ease';
+      isJumping = false;
+    });
+  } else if (carouselImages[index].isEqualNode(secondClone)) {
+    isJumping = true;
+    index = 2; // второй оригинал
+    setPosition(index, false);
+    updateActiveSlide();
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.5s ease';
+      isJumping = false;
+    });
+  } else if (carouselImages[index].isEqualNode(lastClone)) {
+    isJumping = true;
+    index = carouselImages.length - 3; // последний оригинал
+    setPosition(index, false);
+    updateActiveSlide();
+    requestAnimationFrame(() => {
+      track.style.transition = 'transform 0.5s ease';
+      isJumping = false;
     });
   }
+});
 
-  prevBtn.addEventListener("click", () => {
-    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-    updateCarousel();
-  });
+</script>
 
-  nextBtn.addEventListener("click", () => {
-    currentSlide = (currentSlide + 1) % slides.length;
-    updateCarousel();
-  });
 
-  updateCarousel();
-  </script>
+
 </body>
 </html>
