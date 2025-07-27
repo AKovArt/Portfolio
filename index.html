@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Александра Коваль / AKov</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap&subset=cyrillic" rel="stylesheet">
+
+
 
   <style>
     body {
@@ -73,26 +75,30 @@
       text-align: center;
     }
 
-    .signature {
-      position: absolute;
-      left: 65%;
-      top: 10%;
-      transform: translateY(-50%);
-      max-width: 150px;
-      opacity: 0.95;
-      width: auto;
-    }
+    
 
-    .title-block h1 {
-      font-family: 'Neucha', cursive;
-      font-size: 2.5rem;
-    }
+
+.signature {
+  position: absolute;
+  left: 65%;
+  top: 10%;
+  transform: translateY(-50%);
+  max-width: 150px;  /* большая подпись */
+  opacity: 0.95;
+  width: auto;
+}
+.title-block h1 {
+  font-family: 'Neucha', cursive;
+  font-size: 2.5rem;
+}
+
 
     .title-block {
       max-width: 800px;
       margin: 0 auto;
     }
 
+    
     .title-block p {
       margin-top: 10px;
       font-size: 1.2rem;
@@ -139,115 +145,260 @@
       background-repeat: no-repeat;
     }
 
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 800px;
-      margin: auto;
-      overflow: hidden;
-      perspective: 1000px;
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      justify-items: center;
     }
 
-    .carousel-track {
-      display: flex;
-      transition: transform 0.8s ease;
-      transform-style: preserve-3d;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .carousel-track img {
-      opacity: 0.5;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      transform: scale(0.8);
-    }
-
-    .carousel-track img.active {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .carousel-track-wrapper {
-      overflow: hidden;
-      width: 100%;
-    }
-
-    .carousel-image {
-      width: 200px;
-      flex-shrink: 0;
-    }
-
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(0,0,0,0.2);
-      border: none;
-      color: white;
-      font-size: 2rem;
+    .portfolio-grid img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
       cursor: pointer;
-      padding: 10px 14px;
-      border-radius: 50%;
-      z-index: 10;
-      transition: background-color 0.3s;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+.portfolio-grid img:focus {
+  outline: none;
+}
+
+    .portfolio-grid img:hover {
+      transform: scale(1.05);
     }
 
-    .carousel-btn:hover {
-      background-color: rgba(0,0,0,0.4);
-    }
-
-    .carousel-btn.prev {
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      align-items: center;
+      justify-content: center;
     }
 
-    .carousel-btn.next {
-      right: 0;
+    .lightbox.active {
+      display: flex;
     }
 
-    @media (max-width: 748px) {
-      header {
-        padding-top: 40px;
-        padding-bottom: 40px;
-        position: relative;
-        overflow: visible;
+    .lightbox-img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      animation: fadeZoomIn 0.8s ease;
+    }
+
+    @keyframes fadeZoomIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
       }
-
-      .signature {
-        position: static;
-        margin-left: auto !important;
-        margin-right: auto !important;
-        margin-top: -50px;
-        margin-bottom: 0 !important;
-        max-width: 140px;
-        opacity: 0.5;
-        display: block;
-        transform: none;
+      100% {
+        opacity: 1;
+        transform: scale(1);
       }
     }
+
+    .contact a {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: #000;
+      text-decoration: none;
+      font-size: 1.1rem;
+    }
+
+    .contact i {
+      margin-right: 8px;
+      font-size: 1.2rem;
+      vertical-align: middle;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    .lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 10002;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.lightbox-close:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  user-select: none;
+  z-index: 10001;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+.lightbox-prev {
+  left: 20px;
+}
+
+.lightbox-next {
+  right: 20px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.header-inner {
+  position: relative;
+}
+
+
+@media (max-width: 748px) {
+  header {
+    padding-top: 40px;      /* уменьшаем верхний отступ */
+    padding-bottom: 40px;   /* увеличиваем нижний, чтобы подпись поместилась */
+    position: relative;     /* для позиционирования подписи */
+    overflow: visible;      /* чтобы подпись могла выходить за пределы */
+  }
+
+  .header-inner {
+    position: relative;     /* для позиционирования подписи внутри шапки */
+  }
+  .signature {
+    position: static;          /* чтобы по потоку, не абсолютная */
+     margin-left: auto !important;
+    margin-right: auto !important;
+   margin-top: -50px;
+     margin-bottom: 0 !important;
+    max-width: 140px;          /* чуть меньше */
+    opacity: 0.5;              /* полупрозрачная */
+    display: block;            /* чтобы центрировалась */
+    transform: none;           /* убрать трансформации */
+  }
+
+    .about {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    }
+}
+
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  overflow: hidden;
+  perspective: 1000px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+  gap: 20px;
+  align-items: center;
+}
+
+.carousel-track img {
+  opacity: 0.5;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  transform: scale(0.8);
+}
+
+.carousel-track img.active {
+  opacity: 1;
+  transform: scale(1);
+}
+.carousel-track-wrapper {
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-image {
+  width: 200px;
+  flex-shrink: 0;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0,0,0,0.2);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 10px 14px;
+  border-radius: 50%;
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.carousel-btn:hover {
+  background-color: rgba(0,0,0,0.4);
+}
+
+.carousel-btn.prev {
+  left: 0;
+}
+
+.carousel-btn.next {
+  right: 0;
+}
+
+
   </style>
 </head>
 <body>
   <nav class="top-menu">
     <ul>
       <li><a href="#about">Обо мне</a></li>
-      <li><a href="#carousel">Портфолио</a></li>
+      <li><a href="#portfolio">Портфолио</a></li>
       <li><a href="#contacts">Контакты</a></li>
     </ul>
   </nav>
 
   <header>
-    <div class="header-inner">
-      <div class="title-block">
-        <h1>Александра Коваль / AKov</h1>
-        <p>Иллюстратор и арт-дизайнер</p>
-      </div>
+  <div class="header-inner">
+    <div class="title-block">
+    
+    
+      <h1>Александра Коваль / AKov</h1>
+      <p>Иллюстратор и арт-дизайнер</p>
+      
     </div>
-  </header>
-
-  <div class="signature-wrapper">
-    <img class="signature" src="signature.png" alt="Подпись" />
+    
   </div>
+</header>
 
+<div class="signature-wrapper">
+  <img class="signature" src="signature.png" alt="Подпись" />
+</div>
   <main>
     <section id="about">
       <h2>Обо мне</h2>
@@ -268,26 +419,41 @@
       <p>Для меня важно не просто создавать красивые изображения, а рассказывать истории через визуал и передавать настроение. Буду рада воплотить ваши идеи в выразительные иллюстрации.</p>
     </section>
 
-    <section id="carousel" style="margin-top: 80px;">
-      <h2>Мультформат</h2>
-      <p style="font-style: italic; color: #666; max-width: 600px; margin: 5px auto 20px; text-align: center;">
-        Персонажи, фоны и иллюстрации в лёгком анимационном стиле
-      </p>
-      <div class="carousel-container">
-        <button class="carousel-btn prev">&#10094;</button>
-        <div class="carousel-track-wrapper">
-            <div class="carousel-track">
-              <img src="11_tumb.png" alt="Слайд 1" class="carousel-image"/>
-              <img src="10_tumb.png" alt="Слайд 2" class="carousel-image"/>
-              <img src="12_tumb.png" alt="Слайд 3" class="carousel-image"/>
-              <img src="7_tumb.png" alt="Слайд 4" class="carousel-image"/>
-              <img src="8_tumb.png" alt="Слайд 5" class="carousel-image"/>
-              <img src="9_tumb.png" alt="Слайд 6" class="carousel-image"/>
-            </div>
-        </div>
-        <button class="carousel-btn next">&#10095;</button>
+    <section id="portfolio">
+      <h2>Портфолио</h2>
+      <div class="portfolio-grid">
+        <img src="11_tumb.png" alt="Нежность" data-full="11.png"/>
+        <img src="10_tumb.png" alt="скетч" data-full="10.png"/>
+        <img src="12_tumb.png" alt="кошки" data-full="12.png"/>
+        <img src="7_tumb.png" alt="1" data-full="7.png" />
+        <img src="8_tumb.png" alt="2" data-full="8.png"/>
+        <img src="9_tumb.png" alt="3" data-full="9.png"/>
       </div>
     </section>
+
+    
+    <section id="carousel" style="margin-top: 80px;">
+
+      
+  <h2>Слайды портфолио</h2>
+
+      
+  <div class="carousel-container">
+    <button class="carousel-btn prev">&#10094;</button>
+    <div class="carousel-track-wrapper">
+        <div class="carousel-track">
+          <img src="11_tumb.png" alt="Слайд 1" class="carousel-image"/>
+          <img src="10_tumb.png" alt="Слайд 2" class="carousel-image"/>
+          <img src="12_tumb.png" alt="Слайд 3" class="carousel-image"/>
+          <img src="7_tumb.png" alt="Слайд 4" class="carousel-image"/>
+          <img src="8_tumb.png" alt="Слайд 5" class="carousel-image"/>
+          <img src="9_tumb.png" alt="Слайд 6" class="carousel-image"/>
+        </div>
+    </div>
+    <button class="carousel-btn next">&#10095;</button>
+ </div>
+</section>
+
 
     <section id="contacts" class="contact">
       <h2>Контакты</h2>
@@ -304,105 +470,105 @@
     </section>
   </main>
 
+  <div id="lightbox" class="lightbox">
+<span class="lightbox-close" aria-label="Закрыть">
+  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" >
+    <line x1="18" y1="6" x2="6" y2="18" stroke="#C8A2C8" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="6" y1="6" x2="18" y2="18" stroke="#C8A2C8" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+</span>
+
+ <span class="lightbox-prev">
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+    <path d="M15 18l-6-6 6-6" stroke="#C8A2C8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</span>
+
+<img class="lightbox-img" src="" alt="" />
+
+<span class="lightbox-next">
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+    <path d="M9 6l6 6-6 6" stroke="#C8A2C8" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</span>
+
+</div>
+
   <footer>© Александра Коваль / AKov — 2025</footer>
 
   <script>
-    const track = document.querySelector('.carousel-track');
-    let carouselImages = Array.from(track.children);
-    const carouselprevBtn = document.querySelector('.carousel-btn.prev');
-    const carouselnextBtn = document.querySelector('.carousel-btn.next');
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.querySelector(".lightbox-img");
+  const lightboxClose = document.querySelector(".lightbox-close");
+  const lightboxprevBtn = document.querySelector(".lightbox-prev");
+  const lightboxnextBtn = document.querySelector(".lightbox-next");
+  const images = document.querySelectorAll(".portfolio-grid img");
+  let currentIndex = 0;
 
-    let slideWidth = carouselImages[0].clientWidth + 20;
+  function openLightbox(index) {
+    currentIndex = index;
+    lightbox.classList.add("active");
+    lightboxImg.src = images[currentIndex].dataset.full;
+  }
 
-    // Создаём клоны
-    const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
-    const firstClone = carouselImages[0].cloneNode(true);
-    const secondClone = carouselImages[1].cloneNode(true);
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    lightboxImg.src = "";
+  }
 
-    // Вставляем клоны: последний в начало, первый и второй в конец
-    track.insertBefore(lastClone, track.firstChild);
-    track.appendChild(firstClone);
-    track.appendChild(secondClone);
+  function showNext() {
+    currentIndex = (currentIndex + 1) % images.length;
+    lightboxImg.src = images[currentIndex].dataset.full;
+  }
 
-    // Обновляем список слайдов
-    carouselImages = Array.from(track.children);
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    lightboxImg.src = images[currentIndex].dataset.full;
+  }
 
-    let index = 1; // стартуем с первого оригинального слайда
-    let isJumping = false; // флаг блокировки во время безанимационного прыжка
+  images.forEach((img, index) => {
+    img.addEventListener("click", () => openLightbox(index));
+  });
 
-    function setPosition(idx, withTransition = true) {
-      const containerWidth = track.parentElement.clientWidth;
-      const offset = -idx * slideWidth + (containerWidth - slideWidth) / 2;
-      if (withTransition) {
-        track.style.transition = 'transform 0.5s ease';
-      } else {
-        track.style.transition = 'none';
-      }
-      track.style.transform = `translateX(${offset}px)`;
+  lightboxClose.addEventListener("click", closeLightbox);
+  lightboxnextBtn.addEventListener("click", showNext);
+  lightboxprevBtn.addEventListener("click", showPrev);
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target === lightbox) {
+      closeLightbox();
     }
+  });
 
-    function updateActiveSlide() {
-      carouselImages.forEach(img => img.classList.remove('active'));
-      carouselImages[index].classList.add('active');
-    }
+  // Карусель
 
-    function updateCarousel() {
-      setPosition(index, true);
-      updateActiveSlide();
-    }
+  const track = document.querySelector(".carousel-track");
+  const slides = Array.from(track.children);
+  const prevBtn = document.querySelector(".carousel-btn.prev");
+  const nextBtn = document.querySelector(".carousel-btn.next");
+  let currentSlide = 0;
 
-    // Инициализация позиции без анимации
-    setPosition(index, false);
-    updateActiveSlide();
+  function updateCarousel() {
+    const slideWidth = slides[0].getBoundingClientRect().width;
+    const moveX = -slideWidth * currentSlide;
+    track.style.transform = `translateX(${moveX}px)`;
 
-    // Обработчики кнопок с учётом блокировки
-    carouselnextBtn.addEventListener('click', () => {
-      if (isJumping) return;
-      if (index >= carouselImages.length - 1) return;
-      index++;
-      updateCarousel();
+    slides.forEach((slide, idx) => {
+      slide.classList.toggle("active", idx === currentSlide);
     });
+  }
 
-    carouselprevBtn.addEventListener('click', () => {
-      if (isJumping) return;
-      if (index <= 0) return;
-      index--;
-      updateCarousel();
-    });
+  prevBtn.addEventListener("click", () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateCarousel();
+  });
 
-    // Обработчик конца перехода для зацикливания без мерцаний
-    track.addEventListener('transitionend', () => {
-      if (carouselImages[index].isEqualNode(firstClone)) {
-        isJumping = true;
-        index = 1; // первый оригинал
-        setPosition(index, false);
-        updateActiveSlide();
-        requestAnimationFrame(() => {
-          // Возвращаем плавность переходов
-          track.style.transition = 'transform 0.5s ease';
-          isJumping = false;
-        });
-      } else if (carouselImages[index].isEqualNode(secondClone)) {
-        isJumping = true;
-        index = 2; // второй оригинал
-        setPosition(index, false);
-        updateActiveSlide();
-        requestAnimationFrame(() => {
-          track.style.transition = 'transform 0.5s ease';
-          isJumping = false;
-        });
-      } else if (carouselImages[index].isEqualNode(lastClone)) {
-        isJumping = true;
-        index = carouselImages.length - 3; // последний оригинал
-        setPosition(index, false);
-        updateActiveSlide();
-        requestAnimationFrame(() => {
-          track.style.transition = 'transform 0.5s ease';
-          isJumping = false;
-        });
-      }
-    });
+  nextBtn.addEventListener("click", () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateCarousel();
+  });
+
+  updateCarousel();
   </script>
-
 </body>
 </html>
