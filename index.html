@@ -1,485 +1,408 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Александра Коваль / AKov</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap&subset=cyrillic" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Александра Коваль / AKov</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap&subset=cyrillic" rel="stylesheet">
 
+  <style>
+    body {
+      background: linear-gradient(180deg, #e6e0f0 0%, #f9f7f4 100%);
+      position: relative;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('pattern.png');
+      background-repeat: repeat;
+      background-size: 300px;
+      opacity: 0.06;
+      pointer-events: none;
+      z-index: -1;
+    }
 
-  <style>
-    body {
-      background: linear-gradient(180deg, #e6e0f0 0%, #f9f7f4 100%);
-      position: relative;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    .top-menu {
+      position: sticky;
+      top: 0;
+      background: #000;
+      padding: 10px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
 
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('pattern.png');
-      background-repeat: repeat;
-      background-size: 300px;
-      opacity: 0.06;
-      pointer-events: none;
-      z-index: -1;
-    }
+    .top-menu ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      gap: 30px;
+    }
 
-    .top-menu {
-      position: sticky;
-      top: 0;
-      background: #000;
-      padding: 10px 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-    }
+    .top-menu ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
 
-    .top-menu ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      margin: 0;
-      padding: 0;
-      gap: 30px;
-    }
+    .top-menu ul li a:hover,
+    .top-menu ul li a:focus {
+      color: #c9b998;
+      outline: none;
+    }
 
-    .top-menu ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
-    }
+    html {
+      scroll-behavior: smooth;
+    }
 
-    .top-menu ul li a:hover,
-    .top-menu ul li a:focus {
-      color: #c9b998;
-      outline: none;
-    }
+    header {
+      position: relative;
+      background: #000;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    .signature {
+      position: absolute;
+      left: 65%;
+      top: 10%;
+      transform: translateY(-50%);
+      max-width: 150px;
+      opacity: 0.95;
+      width: auto;
+    }
 
-    header {
-      position: relative;
-      background: #000;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
+    .title-block h1 {
+      font-family: 'Neucha', cursive;
+      font-size: 2.5rem;
+    }
 
-    
+    .title-block {
+      max-width: 800px;
+      margin: 0 auto;
+    }
 
+    .title-block p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+    }
 
-.signature {
-  position: absolute;
-  left: 65%;
-  top: 10%;
-  transform: translateY(-50%);
-  max-width: 150px;  /* большая подпись */
-  opacity: 0.95;
-  width: auto;
-}
-.title-block h1 {
-  font-family: 'Neucha', cursive;
-  font-size: 2.5rem;
-}
+    main {
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
 
+    section {
+      margin-bottom: 60px;
+    }
 
-    .title-block {
-      max-width: 800px;
-      margin: 0 auto;
-    }
+    h2 {
+      font-size: 1.8rem;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
 
-    
-    .title-block p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-    }
+    ul.checklist {
+      list-style: none;
+      padding-left: 0;
+    }
 
-    main {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
+    ul.checklist li {
+      position: relative;
+      padding-left: 30px;
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
 
-    section {
-      margin-bottom: 60px;
-    }
+    ul.checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      background-image: url('https://pngicon.ru/file/uploads/zelenaja-galochka.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
 
-    h2 {
-      font-size: 1.8rem;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
-    }
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: auto;
+      overflow: hidden;
+      perspective: 1000px;
+    }
 
-    ul.checklist {
-      list-style: none;
-      padding-left: 0;
-    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.8s ease;
+      transform-style: preserve-3d;
+      gap: 20px;
+      align-items: center;
+    }
 
-    ul.checklist li {
-      position: relative;
-      padding-left: 30px;
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
+    .carousel-track img {
+      opacity: 0.5;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      transform: scale(0.8);
+    }
 
-    ul.checklist li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      background-image: url('https://pngicon.ru/file/uploads/zelenaja-galochka.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
+    .carousel-track img.active {
+      opacity: 1;
+      transform: scale(1);
+    }
 
-    
+    .carousel-track-wrapper {
+      overflow: hidden;
+      width: 100%;
+    }
 
+    .carousel-image {
+      width: 200px;
+      flex-shrink: 0;
+    }
 
-    
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(0,0,0,0.2);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 10px 14px;
+      border-radius: 50%;
+      z-index: 10;
+      transition: background-color 0.3s;
+    }
 
-    @keyframes fadeZoomIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.85);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
+    .carousel-btn:hover {
+      background-color: rgba(0,0,0,0.4);
+    }
 
-    .contact a {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: #000;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
+    .carousel-btn.prev {
+      left: 0;
+    }
 
-    .contact i {
-      margin-right: 8px;
-      font-size: 1.2rem;
-      vertical-align: middle;
-    }
+    .carousel-btn.next {
+      right: 0;
+    }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #000;
-      color: #fff;
-      font-size: 0.9rem;
-    }
+    @media (max-width: 748px) {
+      header {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        position: relative;
+        overflow: visible;
+      }
 
-    
-
-.header-inner {
-  position: relative;
-}
-
-
-@media (max-width: 748px) {
-  header {
-    padding-top: 40px;      /* уменьшаем верхний отступ */
-    padding-bottom: 40px;   /* увеличиваем нижний, чтобы подпись поместилась */
-    position: relative;     /* для позиционирования подписи */
-    overflow: visible;      /* чтобы подпись могла выходить за пределы */
-  }
-
-  .header-inner {
-    position: relative;     /* для позиционирования подписи внутри шапки */
-  }
-  .signature {
-    position: static;          /* чтобы по потоку, не абсолютная */
-     margin-left: auto !important;
-    margin-right: auto !important;
-   margin-top: -50px;
-     margin-bottom: 0 !important;
-    max-width: 140px;          /* чуть меньше */
-    opacity: 0.5;              /* полупрозрачная */
-    display: block;            /* чтобы центрировалась */
-    transform: none;           /* убрать трансформации */
-  }
-
-    .about {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    }
-}
-
-
-.carousel-container {
-  position: relative;
-  width: 100%;
-  max-width: 800px;
-  margin: auto;
-  overflow: hidden;
-  perspective: 1000px;
-}
-
-.carousel-track {
-  display: flex;
-  transition: transform 0.8s ease;
-  transform-style: preserve-3d;
-  gap: 20px;
-  align-items: center;
-}
-
-.carousel-track img {
-  opacity: 0.5;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  transform: scale(0.8);
-}
-
-.carousel-track img.active {
-  opacity: 1;
-  transform: scale(1);
-}
-.carousel-track-wrapper {
-  overflow: hidden;
-  width: 100%;
-}
-
-.carousel-image {
-  width: 200px;
-  flex-shrink: 0;
-}
-
-.carousel-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0,0,0,0.2);
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 10px 14px;
-  border-radius: 50%;
-  z-index: 10;
-  transition: background-color 0.3s;
-}
-
-.carousel-btn:hover {
-  background-color: rgba(0,0,0,0.4);
-}
-
-.carousel-btn.prev {
-  left: 0;
-}
-
-.carousel-btn.next {
-  right: 0;
-}
-
-
-  </style>
+      .signature {
+        position: static;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: -50px;
+        margin-bottom: 0 !important;
+        max-width: 140px;
+        opacity: 0.5;
+        display: block;
+        transform: none;
+      }
+    }
+  </style>
 </head>
 <body>
-  <nav class="top-menu">
-    <ul>
-      <li><a href="#about">Обо мне</a></li>
-      <li><a href="#carousel">Портфолио</a></li>
-      <li><a href="#contacts">Контакты</a></li>
-    </ul>
-  </nav>
+  <nav class="top-menu">
+    <ul>
+      <li><a href="#about">Обо мне</a></li>
+      <li><a href="#carousel">Портфолио</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+  </nav>
 
-  <header>
-  <div class="header-inner">
-    <div class="title-block">
-    
-    
-      <h1>Александра Коваль / AKov</h1>
-      <p>Иллюстратор и арт-дизайнер</p>
-      
-    </div>
-    
-  </div>
-</header>
+  <header>
+    <div class="header-inner">
+      <div class="title-block">
+        <h1>Александра Коваль / AKov</h1>
+        <p>Иллюстратор и арт-дизайнер</p>
+      </div>
+    </div>
+  </header>
 
-<div class="signature-wrapper">
-  <img class="signature" src="signature.png" alt="Подпись" />
-</div>
-  <main>
-    <section id="about">
-      <h2>Обо мне</h2>
-      <p>Меня зовут Александра и я рисую фоны, персонажей, пейзажи, оформляю книги, создаю визуальный стиль для игр и брендов. Работаю в разных стилях, подстраиваясь под задачу проекта.</p>
-      <p>Работаю в Krita на планшете — это даёт мне мобильность и возможность творить в любое удобное время. Уверенно владею Krita и постоянно развиваюсь. У меня нет формального художественного образования — всё, чему научилась, результат самообразования и практики.</p>
-      <p>За время работы я реализовала разнообразные проекты — от иллюстраций и стикеров до фонов для анимации и дизайна для рекламы, что позволило накопить ценный опыт.</p>
+  <div class="signature-wrapper">
+    <img class="signature" src="signature.png" alt="Подпись" />
+  </div>
 
-      <h3>Навыки</h3>
-      <ul class="checklist">
-        <li>Работа в Krita на планшете</li>
-        <li>Мобильность и готовность к работе в любое время</li>
-        <li>Усидчивость и стрессоустойчивость</li>
-        <li>Постоянное обучение и развитие</li>
-        <li>Внимание к деталям и насмотренность</li>
-        <li>Способность работать с монотонными задачами</li>
-      </ul>
+  <main>
+    <section id="about">
+      <h2>Обо мне</h2>
+      <p>Меня зовут Александра и я рисую фоны, персонажей, пейзажи, оформляю книги, создаю визуальный стиль для игр и брендов. Работаю в разных стилях, подстраиваясь под задачу проекта.</p>
+      <p>Работаю в Krita на планшете — это даёт мне мобильность и возможность творить в любое удобное время. Уверенно владею Krita и постоянно развиваюсь. У меня нет формального художественного образования — всё, чему научилась, результат самообразования и практики.</p>
+      <p>За время работы я реализовала разнообразные проекты — от иллюстраций и стикеров до фонов для анимации и дизайна для рекламы, что позволило накопить ценный опыт.</p>
 
-      <p>Для меня важно не просто создавать красивые изображения, а рассказывать истории через визуал и передавать настроение. Буду рада воплотить ваши идеи в выразительные иллюстрации.</p>
-    </section>
+      <h3>Навыки</h3>
+      <ul class="checklist">
+        <li>Работа в Krita на планшете</li>
+        <li>Мобильность и готовность к работе в любое время</li>
+        <li>Усидчивость и стрессоустойчивость</li>
+        <li>Постоянное обучение и развитие</li>
+        <li>Внимание к деталям и насмотренность</li>
+        <li>Способность работать с монотонными задачами</li>
+      </ul>
 
-    
-    <section id="carousel" style="margin-top: 80px;">
-<h2>Мультформат</h2>
-  <p style="font-style: italic; color: #666; max-width: 600px; margin: 5px auto 20px; text-align: center;">
-    Персонажи, фоны и иллюстрации в лёгком анимационном стиле
-  </p>
-      
-  <div class="carousel-container">
-    <button class="carousel-btn prev">&#10094;</button>
-    <div class="carousel-track-wrapper">
-        <div class="carousel-track">
-          <img src="11_tumb.png" alt="Слайд 1" class="carousel-image"/>
-          <img src="10_tumb.png" alt="Слайд 2" class="carousel-image"/>
-          <img src="12_tumb.png" alt="Слайд 3" class="carousel-image"/>
-          <img src="7_tumb.png" alt="Слайд 4" class="carousel-image"/>
-          <img src="8_tumb.png" alt="Слайд 5" class="carousel-image"/>
-          <img src="9_tumb.png" alt="Слайд 6" class="carousel-image"/>
-        </div>
-    </div>
-    <button class="carousel-btn next">&#10095;</button>
- </div>
-</section>
+      <p>Для меня важно не просто создавать красивые изображения, а рассказывать истории через визуал и передавать настроение. Буду рада воплотить ваши идеи в выразительные иллюстрации.</p>
+    </section>
 
+    <section id="carousel" style="margin-top: 80px;">
+      <h2>Мультформат</h2>
+      <p style="font-style: italic; color: #666; max-width: 600px; margin: 5px auto 20px; text-align: center;">
+        Персонажи, фоны и иллюстрации в лёгком анимационном стиле
+      </p>
+      <div class="carousel-container">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="carousel-track-wrapper">
+            <div class="carousel-track">
+              <img src="11_tumb.png" alt="Слайд 1" class="carousel-image"/>
+              <img src="10_tumb.png" alt="Слайд 2" class="carousel-image"/>
+              <img src="12_tumb.png" alt="Слайд 3" class="carousel-image"/>
+              <img src="7_tumb.png" alt="Слайд 4" class="carousel-image"/>
+              <img src="8_tumb.png" alt="Слайд 5" class="carousel-image"/>
+              <img src="9_tumb.png" alt="Слайд 6" class="carousel-image"/>
+            </div>
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
+      </div>
+    </section>
 
-    <section id="contacts" class="contact">
-      <h2>Контакты</h2>
-      <p>Напишите мне:</p>
-      <a href="mailto:alex3934@mail.ru" target="_blank" rel="noopener noreferrer">
-        <i class="fas fa-envelope"></i> alex3934@mail.ru
-      </a><br />
-      <a href="https://instagram.com/AKOV_ART" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-instagram"></i> @AKOV_ART
-      </a><br />
-      <a href="https://t.me/Aleksandra_AKov" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-telegram-plane"></i> @Aleksandra_AKov
-      </a>
-    </section>
-  </main>
+    <section id="contacts" class="contact">
+      <h2>Контакты</h2>
+      <p>Напишите мне:</p>
+      <a href="mailto:alex3934@mail.ru" target="_blank" rel="noopener noreferrer">
+        <i class="fas fa-envelope"></i> alex3934@mail.ru
+      </a><br />
+      <a href="https://instagram.com/AKOV_ART" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-instagram"></i> @AKOV_ART
+      </a><br />
+      <a href="https://t.me/Aleksandra_AKov" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-telegram-plane"></i> @Aleksandra_AKov
+      </a>
+    </section>
+  </main>
 
+  <footer>© Александра Коваль / AKov — 2025</footer>
 
+  <script>
+    const track = document.querySelector('.carousel-track');
+    let carouselImages = Array.from(track.children);
+    const carouselprevBtn = document.querySelector('.carousel-btn.prev');
+    const carouselnextBtn = document.querySelector('.carousel-btn.next');
 
-</div>
+    let slideWidth = carouselImages[0].clientWidth + 20;
 
-  <footer>© Александра Коваль / AKov — 2025</footer>
+    // Создаём клоны
+    const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
+    const firstClone = carouselImages[0].cloneNode(true);
+    const secondClone = carouselImages[1].cloneNode(true);
 
-  <script>
-  
-  
-<script>
-  const track = document.querySelector('.carousel-track');
-let carouselImages = Array.from(track.children);
-const carouselprevBtn = document.querySelector('.carousel-btn.prev');
-const carouselnextBtn = document.querySelector('.carousel-btn.next');
+    // Вставляем клоны: последний в начало, первый и второй в конец
+    track.insertBefore(lastClone, track.firstChild);
+    track.appendChild(firstClone);
+    track.appendChild(secondClone);
 
-let slideWidth = carouselImages[0].clientWidth + 20;
+    // Обновляем список слайдов
+    carouselImages = Array.from(track.children);
 
-// Создаём клоны
-const lastClone = carouselImages[carouselImages.length - 1].cloneNode(true);
-const firstClone = carouselImages[0].cloneNode(true);
-const secondClone = carouselImages[1].cloneNode(true);
+    let index = 1; // стартуем с первого оригинального слайда
+    let isJumping = false; // флаг блокировки во время безанимационного прыжка
 
-// Вставляем клоны: последний в начало, первый и второй в конец
-track.insertBefore(lastClone, track.firstChild);
-track.appendChild(firstClone);
-track.appendChild(secondClone);
+    function setPosition(idx, withTransition = true) {
+      const containerWidth = track.parentElement.clientWidth;
+      const offset = -idx * slideWidth + (containerWidth - slideWidth) / 2;
+      if (withTransition) {
+        track.style.transition = 'transform 0.5s ease';
+      } else {
+        track.style.transition = 'none';
+      }
+      track.style.transform = `translateX(${offset}px)`;
+    }
 
-// Обновляем список слайдов
-carouselImages = Array.from(track.children);
+    function updateActiveSlide() {
+      carouselImages.forEach(img => img.classList.remove('active'));
+      carouselImages[index].classList.add('active');
+    }
 
-let index = 1; // стартуем с первого оригинального слайда
-let isJumping = false; // флаг блокировки во время безанимационного прыжка
+    function updateCarousel() {
+      setPosition(index, true);
+      updateActiveSlide();
+    }
 
-function setPosition(idx, withTransition = true) {
-  const containerWidth = track.parentElement.clientWidth;
-  const offset = -idx * slideWidth + (containerWidth - slideWidth) / 2;
-  if (withTransition) {
-    track.style.transition = 'transform 0.5s ease';
-  } else {
-    track.style.transition = 'none';
-  }
-  track.style.transform = `translateX(${offset}px)`;
-}
+    // Инициализация позиции без анимации
+    setPosition(index, false);
+    updateActiveSlide();
 
-function updateActiveSlide() {
-  carouselImages.forEach(img => img.classList.remove('active'));
-  carouselImages[index].classList.add('active');
-}
+    // Обработчики кнопок с учётом блокировки
+    carouselnextBtn.addEventListener('click', () => {
+      if (isJumping) return;
+      if (index >= carouselImages.length - 1) return;
+      index++;
+      updateCarousel();
+    });
 
-function updateCarousel() {
-  setPosition(index, true);
-  updateActiveSlide();
-}
+    carouselprevBtn.addEventListener('click', () => {
+      if (isJumping) return;
+      if (index <= 0) return;
+      index--;
+      updateCarousel();
+    });
 
-// Инициализация позиции без анимации
-setPosition(index, false);
-updateActiveSlide();
-
-// Обработчики кнопок с учётом блокировки
-carouselnextBtn.addEventListener('click', () => {
-  if (isJumping) return;
-  if (index >= carouselImages.length - 1) return;
-  index++;
-  updateCarousel();
-});
-
-carouselprevBtn.addEventListener('click', () => {
-  if (isJumping) return;
-  if (index <= 0) return;
-  index--;
-  updateCarousel();
-});
-
-// Обработчик конца перехода для зацикливания без мерцаний
-track.addEventListener('transitionend', () => {
-  if (carouselImages[index].isEqualNode(firstClone)) {
-    isJumping = true;
-    index = 1; // первый оригинал
-    setPosition(index, false);
-    updateActiveSlide();
-    requestAnimationFrame(() => {
-      // Возвращаем плавность переходов
-      track.style.transition = 'transform 0.5s ease';
-      isJumping = false;
-    });
-  } else if (carouselImages[index].isEqualNode(secondClone)) {
-    isJumping = true;
-    index = 2; // второй оригинал
-    setPosition(index, false);
-    updateActiveSlide();
-    requestAnimationFrame(() => {
-      track.style.transition = 'transform 0.5s ease';
-      isJumping = false;
-    });
-  } else if (carouselImages[index].isEqualNode(lastClone)) {
-    isJumping = true;
-    index = carouselImages.length - 3; // последний оригинал
-    setPosition(index, false);
-    updateActiveSlide();
-    requestAnimationFrame(() => {
-      track.style.transition = 'transform 0.5s ease';
-      isJumping = false;
-    });
-  }
-});
-
-</script>
-
-
+    // Обработчик конца перехода для зацикливания без мерцаний
+    track.addEventListener('transitionend', () => {
+      if (carouselImages[index].isEqualNode(firstClone)) {
+        isJumping = true;
+        index = 1; // первый оригинал
+        setPosition(index, false);
+        updateActiveSlide();
+        requestAnimationFrame(() => {
+          // Возвращаем плавность переходов
+          track.style.transition = 'transform 0.5s ease';
+          isJumping = false;
+        });
+      } else if (carouselImages[index].isEqualNode(secondClone)) {
+        isJumping = true;
+        index = 2; // второй оригинал
+        setPosition(index, false);
+        updateActiveSlide();
+        requestAnimationFrame(() => {
+          track.style.transition = 'transform 0.5s ease';
+          isJumping = false;
+        });
+      } else if (carouselImages[index].isEqualNode(lastClone)) {
+        isJumping = true;
+        index = carouselImages.length - 3; // последний оригинал
+        setPosition(index, false);
+        updateActiveSlide();
+        requestAnimationFrame(() => {
+          track.style.transition = 'transform 0.5s ease';
+          isJumping = false;
+        });
+      }
+    });
+  </script>
 
 </body>
 </html>
