@@ -374,6 +374,8 @@
 
   </style>
 </head>
+
+  
 <body>
   <nav class="top-menu">
     <ul>
@@ -539,13 +541,14 @@
       closeLightbox();
     }
   });
-
+  </script>
+  <script>
   // Карусель
 
   const track = document.querySelector(".carousel-track");
   const slides = Array.from(track.children);
-  const prevBtn = document.querySelector(".carousel-btn.prev");
-  const nextBtn = document.querySelector(".carousel-btn.next");
+  const carouselprevBtn = document.querySelector(".carousel-btn.prev");
+  const carouselnextBtn = document.querySelector(".carousel-btn.next");
   let currentSlide = 0;
 
   function updateCarousel() {
