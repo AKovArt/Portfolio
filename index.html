@@ -8,23 +8,23 @@
       <style>
             body {
                   background: linear-gradient(180deg, #e6e0f0 0%, #f9f7f4 100%);
-      position: relative;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background-image: url('pattern.png');
-      background-repeat: repeat;
-      background-size: 300px;
-      opacity: 0.06;
-      pointer-events: none;
-      z-index: -1;
-    }
+                  position: relative;
+                  min-height: 100vh;
+                  margin: 0;
+                  padding: 0;
+                  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            body::before {
+                  content: "";
+                  position: fixed;
+                  top: 0; left: 0; right: 0; bottom: 0;
+                  background-image: url('pattern.png');
+                  background-repeat: repeat;
+                  background-size: 300px;
+                  opacity: 0.06;
+                  pointer-events: none;
+                  z-index: -1;
+            }
             .top-menu {
                   position: sticky;
                   top: 0;
@@ -74,141 +74,122 @@
                   object-fit: contain;
                   opacity: 0.95;
             }
-
-    .title-block {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    .title-block h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
-
-    .title-block p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-    }
-
-    main {
-      padding: 40px 20px;
-      max-width: 800px;
-      margin: auto;
-    }
-
-    section {
-      margin-bottom: 60px;
-    }
-
-    h2 {
-      font-size: 1.8rem;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
-    }
-
-    ul.checklist {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    ul.checklist li {
-      position: relative;
-      padding-left: 30px;
-      margin-bottom: 12px;
-      font-size: 1.1rem;
-    }
-
-    ul.checklist li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 20px;
-      height: 20px;
-      background-image: url('https://pngicon.ru/file/uploads/zelenaja-galochka.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-    }
-
-    .portfolio-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-      justify-items: center;
-    }
-
-    .portfolio-grid img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      outline: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-.portfolio-grid img:focus {
-  outline: none;
-}
-
-    .portfolio-grid img:hover {
-      transform: scale(1.05);
-    }
-
-    .lightbox {
-      display: none;
-      position: fixed;
-      z-index: 9999;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.85);
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lightbox.active {
-      display: flex;
-    }
-
-    .lightbox-img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      animation: fadeZoomIn 0.8s ease;
-    }
-
-    @keyframes fadeZoomIn {
-      0% {
-        opacity: 0;
-        transform: scale(0.85);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .contact a {
-      display: inline-block;
-      margin-bottom: 10px;
-      color: #000;
-      text-decoration: none;
-      font-size: 1.1rem;
-    }
-
-    .contact i {
-      margin-right: 8px;
-      font-size: 1.2rem;
-      vertical-align: middle;
-    }
-
-    footer {
-      text-align: center;
-      padding: 20px;
+            .title-block {
+                  max-width: 800px;
+                  margin: 0 auto;
+            }
+            .title-block h1 {
+                  margin: 0;
+                  font-size: 2.5rem;
+            }
+            .title-block p {
+                  margin-top: 10px;
+                  font-size: 1.2rem;
+            }
+            main {
+                  padding: 40px 20px;
+                  max-width: 800px;
+                  margin: auto;
+            }
+            section {
+                  margin-bottom: 60px;
+            }
+            h2 {
+                  font-size: 1.8rem;
+                  border-bottom: 2px solid #ccc;
+                  padding-bottom: 5px;
+            }
+            ul.checklist {
+                  list-style: none;
+                  padding-left: 0;
+            }
+            ul.checklist li {
+                  position: relative;
+                  padding-left: 30px;
+                  margin-bottom: 12px;
+                  font-size: 1.1rem;
+            }
+            ul.checklist li::before {
+                  content: "";
+                  position: absolute;
+                  left: 0;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 20px;
+                  height: 20px;
+                  background-image: url('https://pngicon.ru/file/uploads/zelenaja-galochka.png');
+                  background-size: contain;
+                  background-repeat: no-repeat;
+            }
+            .portfolio-grid {
+                  display: grid;
+                  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                  gap: 16px;
+                  justify-items: center;
+            }
+            .portfolio-grid img {
+                  max-width: 100%;
+                  height: auto;
+                  border-radius: 6px;
+                  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                  transition: transform 0.3s ease;
+                  cursor: pointer;
+                  outline: none;
+                  -webkit-tap-highlight-color: transparent;
+            }
+            .portfolio-grid img:focus {
+                  outline: none;
+            }
+            .portfolio-grid img:hover {
+                  transform: scale(1.05);
+            }
+            .lightbox {
+                  display: none;
+                  position: fixed;
+                  z-index: 9999;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  background: rgba(0, 0, 0, 0.85);
+                  align-items: center;
+                  justify-content: center;
+            }
+            .lightbox.active {
+                  display: flex;
+            }
+            .lightbox-img {
+                  max-width: 90%;
+                  max-height: 90%;
+                  border-radius: 10px;
+                  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+                  animation: fadeZoomIn 0.8s ease;
+            }
+            @keyframes fadeZoomIn {
+                  0% {
+                        opacity: 0;
+                        transform: scale(0.85);
+                  }
+                  100% {
+                        opacity: 1;
+                        transform: scale(1);
+                  }
+            }
+            .contact a {
+                  display: inline-block;
+                  margin-bottom: 10px;
+                  color: #000;
+                  text-decoration: none;
+                  font-size: 1.1rem;
+            }
+            .contact i {
+                  margin-right: 8px;
+                  font-size: 1.2rem;
+                  vertical-align: middle;
+            }
+footer {
+text-align: center;
+padding: 20px;
       background: #ddd;
       font-size: 0.9rem;
     }
