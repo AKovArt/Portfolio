@@ -48,11 +48,18 @@
       font-weight: 400;
     }
 
-    .header-right img {
-      width: 24px;
-      height: 24px;
-      margin-left: 10px;
+    .header-right {
+       display: flex;
+       flex-direction: column; /* ставим иконки в столбик */
+       align-items: center;    /* по центру блока */
+       gap: 15px;              /* расстояние между иконками */
     }
+     .header-right img {
+       width: 24px;
+       height: 24px;
+       margin: 0;              /* убираем left margin, теперь gap управляет расстоянием */
+     }
+
 
     .nav {
       display: flex;
