@@ -49,16 +49,23 @@
     }
 
     .header-right {
-       display: flex;
-       flex-direction: column; /* ставим иконки в столбик */
-       align-items: center;    /* по центру блока */
-       gap: 15px;              /* расстояние между иконками */
-    }
-     .header-right img {
-       width: 24px;
-       height: 24px;
-       margin: 0;              /* убираем left margin, теперь gap управляет расстоянием */
-     }
+  display: flex;
+  flex-direction: column; /* ставим значки в столбик */
+  align-items: center;
+  gap: 15px;
+}
+
+.header-right a {
+  font-size: 28px;  /* размер иконок */
+  color: #000;      /* цвет иконок */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header-right a:hover {
+  color: #ff4081;   /* меняет цвет при наведении (можно выбрать свой) */
+}
+
 
 
     .nav {
@@ -117,10 +124,17 @@
       <h1 class="site-title">А л е к с а н д р а  К о в а л ь<br><span>Художник-иллюстратор</span></h1>
     </div>
     <div class="header-right">
-      <a href="#"><img src="icons/twitter.svg" alt="Twitter"></a>
-      <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
-      <a href="#"><img src="icons/behance.svg" alt="Behance"></a>
-    </div>
+  <a href="https://instagram.com/akov_art" target="_blank" aria-label="Instagram">
+    <i class="fab fa-instagram"></i>
+  </a>
+  <a href="https://t.me/Aleksandra_AKov" target="_blank" aria-label="Telegram">
+    <i class="fab fa-telegram"></i>
+  </a>
+  <a href="mailto:alex3934@mail.ru" aria-label="Email">
+    <i class="fas fa-envelope"></i>
+  </a>
+</div>
+
   </header>
 
   <!-- Меню -->
