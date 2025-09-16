@@ -137,29 +137,26 @@
     }
     
     .gallery {
-  padding: 0 20px; /* одинаковые края */
+      padding: 0 20px; /* одинаковые края */
     }
     
     .gallery .grid {
-      display: flex;
+      display: grid;
       flex-wrap: wrap;
-     /* grid-template-columns: repeat(4, 1fr); /* ровно 4 колонки */
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* ровно 4 колонки */
       gap: 10px; /* расстояние между картинками */
       /*grid-auto-rows: 200px;  /* высота каждой строки */*/
       padding: 0 20px;
+      justify-items: center;
     }
 
     .gallery img {
-      /*width: 100%;*/
+      width: auto;
       max-height: 200px;
-      /*height: auto;          /* растягиваем картинку на всю ячейку */*/
-      /*object-fit: cover;     /* обрезка по краям, сохраняем пропорции */*/
-      /*display: block;*/ 
-
- display: block;
-flex-grow: 1;        /* растягиваем горизонтальные по доступной ширине */
-
-
+      height: 200px;          /* растягиваем картинку на всю ячейку */
+      object-fit: contain;     /* обрезка по краям, сохраняем пропорции */
+      display: block;
+     /* flex-grow: 1;        /* растягиваем горизонтальные по доступной ширине */*/
     }
 
      
