@@ -140,42 +140,41 @@
       padding: 0 20px; /* одинаковые края */
     }
     
-    .gallery .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);; /* ровно 4 колонки */
-      gap: 10px; /* расстояние между картинками */
-      /*grid-auto-rows: 200px;  /* высота каждой строки */*/
-      /*padding: 0 20px;*/
-      justify-items: center;
-    }
-    
-    .gallery .grid img:nth-child(1),
-    .gallery .grid img:nth-child(2),
-    .gallery .grid img:nth-child(3) {
-      grid-column: span 1; /* каждая занимает 1 колонку */
-      height: 250px;        /* фиксированная высота */
-      width: auto;
-    }
+.gallery .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 колонки */
+  gap: 10px;
+  justify-items: center; /* центрируем картинки в ячейках */
+  align-items: center;   /* выравниваем по вертикали */
+}
 
-   /* Вторая строка: 1 картинка */
-    .gallery .grid img:nth-child(4) {
-      grid-column: span 3;  /* занимает всю ширину ряда */
-      height: 250px;
-      width: auto;
-    } 
-    
-    .gallery .grid img:nth-child(5),
-    .gallery .grid img:nth-child(6),
-    .gallery .grid img:nth-child(7),{
-      grid-column: span 1;
-      height: 250px;
-      width: auto;
-    }
-    
-    .gallery img {
-      object-fit: contain; /* сохраняем пропорции */
-      display: block;
-    }
+.gallery .grid img {
+  height: 250px;       /* фиксированная высота */
+  width: auto;         /* ширина по пропорциям */
+  object-fit: contain; /* не обрезает картинку */
+  display: block;
+  max-width: 100%;     /* не выходит за предел колонки */
+}
+
+/* первая строка */
+.gallery .grid img:nth-child(1),
+.gallery .grid img:nth-child(2),
+.gallery .grid img:nth-child(3) {
+  grid-column: span 1;
+}
+
+/* вторая строка */
+.gallery .grid img:nth-child(4) {
+  grid-column: span 3; /* занимает всю ширину */
+}
+
+/* третья строка */
+.gallery .grid img:nth-child(5),
+.gallery .grid img:nth-child(6),
+.gallery .grid img:nth-child(7) {
+  grid-column: span 1;
+}
+
      
     
     section {
