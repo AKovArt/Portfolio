@@ -141,18 +141,25 @@
     }
     
     .gallery .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr); /* ровно 4 колонки */
+      display: flex;
+      flex-wrap: wrap;
+     /* grid-template-columns: repeat(4, 1fr); /* ровно 4 колонки */
       gap: 10px; /* расстояние между картинками */
-      grid-auto-rows: 200px;  /* высота каждой строки */
-      padding: 20px;
+      /*grid-auto-rows: 200px;  /* высота каждой строки */*/
+      padding: 0 20px;
     }
 
     .gallery img {
-      width: 100%;
-      height: auto;          /* растягиваем картинку на всю ячейку */
-      object-fit: cover;     /* обрезка по краям, сохраняем пропорции */
-      display: block;
+      /*width: 100%;*/
+      max-height: 200px;
+      /*height: auto;          /* растягиваем картинку на всю ячейку */*/
+      /*object-fit: cover;     /* обрезка по краям, сохраняем пропорции */*/
+      /*display: block;*/ 
+
+ display: block;
+flex-grow: 1;        /* растягиваем горизонтальные по доступной ширине */
+
+
     }
 
      
