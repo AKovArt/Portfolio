@@ -276,15 +276,15 @@
     font-size: 20px;  /* уменьшаем размер иконок (сейчас 28px) */
     }
   
-  .gallery .grid {
-    grid-template-columns: 1fr; /* одна колонка на узких экранах */
-    gap: 10px;                  /* расстояние между картинками */
+.gallery .grid {
+    grid-template-columns: 1fr 1fr; /* или 1fr 1fr для двух колонок */
+    gap: 10px;
   }
 
   .gallery .grid img {
-    height: auto;       /* сохраняем пропорции */
-    width: 100%;        /* растягиваем по ширине колонки */
-    object-fit: cover;  /* обрезка лишнего при необходимости */
+    width: 100%;      /* растянуть по ширине колонки */
+    height: auto;     /* сохраняем пропорции */
+    grid-column: auto; /* убираем все span, чтобы все изображения были равны */
   }
   
 }
